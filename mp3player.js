@@ -11,7 +11,7 @@ var play = function play(filePath){
     			throw err;
   	    process.stderr.write(err);
       	    process.stdout.write(out);
-      	    process.exit(code);
+//      	    process.exit(code);
 	});
 };
 

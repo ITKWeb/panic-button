@@ -73,31 +73,9 @@ socket.on('panic', function(){
                 gpio.write(blue_pin, 1);
                 var mail = new Mail({to:'jeremy.flusin@itkweb.com', subject:'Poussssin ! !', text: 'Gne !'});
                 mail.send();
-		var rand = Math.random();
-		if (rand < 0.125) {
-			player.play('./resources/easter01.mp3');
-		}
-		else if (rand < 0.25) {
-			player.play('./resources/easter02.mp3');
-		}
-		else if (rand < 0.375) {
-			player.play('./resources/easter03.mp3');
-		}
-		else if (rand < 0.5) {
-                        player.play('./resources/easter04.mp3');
-                }
-                else if (rand < 0.625) {
-                        player.play('./resources/easter05.mp3');
-                }
-                else if (rand < 0.75) {
-                        player.play('./resources/easter06.mp3');
-                }
-                else if (rand < 0.875) {
-                        player.play('./resources/easter07.mp3');
-                }
-		else {
-			player.play('./resources/easter08.mp3');
-		}
+		var rand = Math.random() * 9 + 1;
+		player.play('./resources/easter0'+ Math.floor(rand) +'.mp3');
+
                 closePin(blue_pin, 5000);
         });
   });
