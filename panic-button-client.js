@@ -28,7 +28,7 @@ socket.on('panic', function(){
         gpio.open(red_pin, "output", function(err) {
                 if(err) console.log('[CLIENT]:'+err);
                 gpio.write(red_pin, 1);
-                var mail = new Mail({to:'jeremy.flusin@itkweb.com', subject:'Panique à bord !',  text: 'C\'est la panique !!!!'});
+                var mail = new Mail({to:'itkgroup@itkweb.com', subject:'Panique à bord !',  text: 'C\'est la panique !!! Rdv salle cafe'});
 		mail.send();		
                 player.play('./resources/panic.mp3');
                 closePin(red_pin, 45000);
