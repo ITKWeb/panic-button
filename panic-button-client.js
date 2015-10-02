@@ -1,13 +1,22 @@
-//amixer cset numid=3 1
-
 var socket = require('socket.io-client')('http://10.0.0.174:3000');
 var gpio = require('pi-gpio');
 var Mail = require('./mail.js');
 var player = require('./mp3player.js');
+var exec = require('exec');
 
 var blue_pin = 37;
 var green_pin = 33;
 var red_pin = 35;
+
+
+exec('amixer cset numid=3 1', function(err, out, code){
+  if (err instanceof Error)
+    throw err;
+  process.stderr.write(err);
+  process.stdout.write(out);
+});
+
+
 
 var closePin = function(pin,delay){
         setTimeout(function(){
@@ -51,7 +60,7 @@ socket.on('panic', function(){
         });
   });
 
-  socket.on('standup', function(){
+  socket.on('stand-up', function(){
        gpio.open(blue_pin, "output", function(err) {
                 if(err) console.log('[CLIENT]:'+err);
                 gpio.write(blue_pin, 1);
